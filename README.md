@@ -1,13 +1,22 @@
 
 
 # GPSpeed
+## Introduction
 
 GPSpeed est un petit montage à l'aide d'un ESP32 LilyGO T-Display et un GPS BN-220.
-Il permet de mesurer la vitesse d'un avion RC en vol. La visualisation de la vitesse max se fait via une interface web. La connexion sera sur un réseau Wifi du nom de : "**GPSpeed**". La page a visualiser est : "**http://127.16.9.1**"
+Il permet de mesurer la vitesse d'un avion RC en vol. La visualisation de la vitesse max se fait via une interface web ou par lecture de l'écran. La connexion sera sur un réseau Wifi, la page a visualiser possède un menu affichant 3 écrans.
+
+### Config Réseau
+|SSID|GPSpeed|
+|---:|---:|
+|**Page**|**http://127.16.9.1**|
+
+### Pages affichées
 
 ![vit](https://raw.githubusercontent.com/Runsys16/GPSpeed/main/images/ecran-vit.png)
 ![gps](https://raw.githubusercontent.com/Runsys16/GPSpeed/main/images/ecran-gps.png)
 ![sat](https://raw.githubusercontent.com/Runsys16/GPSpeed/main/images/ecran-sat.png)
+
 
 ## Matériel nécessaire
 
@@ -20,10 +29,10 @@ Il permet de mesurer la vitesse d'un avion RC en vol. La visualisation de la vit
 ## Bibliotheques
 Actuellement la verion de l'IDE arduino est 2.3.2. La configuration du board de l'IDE arduino sera : **ESP32 Dev Module**
 ### Liste des bibliotheques
-|bibliothèque|version|
-|---:|---:|
-|TFT_eSPI|2.5.43|
-|TinyGPSPlus|1.0.3|
+  |bibliothèque|version|
+  |---:|---:|
+  |TFT_eSPI|2.5.43|
+  |TinyGPSPlus|1.0.3|
 
 Les bibliothèques Wire.h, HardwareSerial.h, WiFi.h, WiFiClient.h, WiFiAP.h font parties du package ESP32
 
