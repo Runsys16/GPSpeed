@@ -5,9 +5,11 @@
 GPSpeed est un petit montage à l'aide d'un ESP32 lilyGO et un GPS BN-220.
 Il permet de mesurer la vitesse d'un avion RC en vole. La visualisation de la vitesse max se fait via le web. La page a visualiser est http://127.16.9.1 
 
-![vit](https://raw.githubusercontent.com/Runsys16/GPSpeed/main/images/ecran-vit.jpg)
-![gps](https://raw.githubusercontent.com/Runsys16/GPSpeed/main/images/ecran-gps.jpg)
-![sat](https://raw.githubusercontent.com/Runsys16/GPSpeed/main/images/ecran-sat.jpg)
+![vit](https://raw.githubusercontent.com/Runsys16/GPSpeed/main/images/ecran-vit.png)
+
+![gps](https://raw.githubusercontent.com/Runsys16/GPSpeed/main/images/ecran-gps.png)
+
+![sat](https://raw.githubusercontent.com/Runsys16/GPSpeed/main/images/ecran-sat.png)
 
 ## Matériel nécessaire
 
