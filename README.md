@@ -13,22 +13,20 @@ Il permet de mesurer la vitesse d'un avion RC en vol. La visualisation de la vit
 
 ### Pages affichées
 
-![](https://raw.githubusercontent.com/Runsys16/GPSpeed/main/images/ecran-02.png)
-
-![](https://raw.githubusercontent.com/Runsys16/GPSpeed/main/images/ecran-01.png)
-
-![](https://raw.githubusercontent.com/Runsys16/GPSpeed/main/images/ecran-00.png)
+![VIT](https://raw.githubusercontent.com/Runsys16/GPSpeed/main/images/ecran-vit.png)
+![GPS](https://raw.githubusercontent.com/Runsys16/GPSpeed/main/images/ecran-gps.png)
+![SAT](https://raw.githubusercontent.com/Runsys16/GPSpeed/main/images/ecran-sat.png)
 
 
 ## Matériel nécessaire
 
 ![ESP32](https://raw.githubusercontent.com/Runsys16/GPSpeed/main/images/esp32-bn220.jpg)
 
-![sat](https://raw.githubusercontent.com/Runsys16/GPSpeed/main/images/ecran-sat.png)
+![mat0](https://raw.githubusercontent.com/Runsys16/GPSpeed/main/images/ecran-02.png)
 
-![sat](https://raw.githubusercontent.com/Runsys16/GPSpeed/main/images/ecran-sat.png)
+![mat1](https://raw.githubusercontent.com/Runsys16/GPSpeed/main/images/ecran-01.png)
 
-![sat](https://raw.githubusercontent.com/Runsys16/GPSpeed/main/images/ecran-sat.png)
+![mat2](https://raw.githubusercontent.com/Runsys16/GPSpeed/main/images/ecran-00.png)
 
 [Lien constructeur ESP32](https://www.lilygo.cc/products/lilygo%C2%AE-ttgo-t-display-1-14-inch-lcd-esp32-control-board)
 
