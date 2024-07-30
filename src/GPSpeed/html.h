@@ -214,7 +214,7 @@ var alang = {
   latitude      : [ "Front weight", "Latitude" ],
   vitesse       : [ "Weight", "Vitesse" ],
   vitessemax    : [ "CG from Leading Edge", "Vitesse max" ],
-  nsat          : [ "CG from Leading Edge", "Nombre de satellites" ],
+  nsat          : [ "CG from Leading Edge", "Nb satellites" ],
   alt           : [ "Altitude", "Altitude" ],
 };
 //-----------------------------------------
@@ -284,7 +284,7 @@ function lang_refresh() {
 function iamhere( here ) {
   var e = gElt( "whereami" );
   var esrc = gElt( "lang_"+here );
-  e.innerHTML = "GPSpeed:"+esrc.innerHTML;
+  e.innerHTML = "GPSpeed: "+esrc.innerHTML;
   for (var i=0; i<screens.length; i++) {
 	  hide_this( screens[i] );
   }
@@ -552,7 +552,7 @@ console.log( "Print");
       </div>
 <!----------------------------------------------------------------->
       <div id="sats" class="w3-panel w3-white w3-card w3-display-container">
-        <div id="titegps" class="w3-panel w3-white w3-card w3-display-container w3-center w3-theme-l2">
+        <div id="titlegps" class="w3-panel w3-white w3-card w3-display-container w3-center w3-theme-l2">
           <p><span class="w3-center-align">Position des satellites</span></p>
         </div>
         <div class="w3-center-align w3-block" style = "text-align:center;">
@@ -564,7 +564,7 @@ console.log( "Print");
       </div>
 <!----------------------------------------------------------------->
       <div id="gps" class="w3-panel w3-white w3-card w3-display-container">
-        <div id="titegps" class="w3-panel w3-white w3-card w3-display-container w3-center w3-theme-l2">
+        <div id="titlegps" class="w3-panel w3-white w3-card w3-display-container w3-center w3-theme-l2">
           <p>Datas GPS  (BN-220)</p>
         </div>
         <table class="w3-table">
@@ -578,7 +578,7 @@ console.log( "Print");
             <td id="lang_gpsvitesse_data" class="w3-right-align">23.12km/h</td></tr>
           <tr><td id="lang_gpsaltitude">Altitude :</td>
             <td id="lang_gpsaltitude_data" class="w3-right-align">67.2m</td></tr>
-          <tr><td id="lang_gpsnbsats">Nombre de satellites :</td>
+          <tr><td id="lang_gpsnbsats">Nb satellites :</td>
             <td id="lang_gpsnbsats_data" class="w3-right-align">8</td></tr>
           <tr><td id="lang_gpsdate">Date :</td>
             <td id="lang_gpsdate_data" class="w3-right-align">17/11/2023</td></tr>
