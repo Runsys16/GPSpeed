@@ -67,7 +67,7 @@
 //        #include "driver/gpio.h"
 //
 //-----------------------------------------------------------------------------------------------------------------------------------------
-//#define DEBUG_INO
+#define DEBUG_INO
 //#define SIMU
 //#define DEBUG_REQ                   // Info de debogage des requetes client<->serveur
 //-------------------------------------
@@ -82,6 +82,7 @@
 #include "screen_splash.h"
 #include "screen_sats.h"
 #include "screen_net_info.h"
+#include "screen_recherche.h"
 //-------------------------------------
 #include "Button2.h"
 //-------------------------------------
@@ -114,12 +115,14 @@ ScreenGPSInfo           sGpsInfo = ScreenGPSInfo(&tft);
 ScreenSplash            sSplash  = ScreenSplash(&tft);
 ScreenSats              sSats    = ScreenSats(&tft);
 ScreenNetInfo           sNetInfo = ScreenNetInfo(&tft);
+ScreenRecherche         sRecherc = ScreenRecherche(&tft);
 //-------------------------------------------------------
 int                     iGps;
 int                     iGpsInfo;
 int                     iSplash;
 int                     iSats;
 int                     iNetInfo;
+int                     iRecherc;
 //-------------------------------------------------------
 //   Bouton poussoir
 //-------------------------------------------------------
@@ -151,6 +154,10 @@ TinyGPSCustom           satNumber[NB_TRAME_GSV];              // to be initializ
 TinyGPSCustom           elevation[NB_TRAME_GSV];
 TinyGPSCustom           azimuth[NB_TRAME_GSV];
 TinyGPSCustom           snr[NB_TRAME_GSV];
+//-------------------------------------------------------
+unsigned long           uElapsedGPSActif;
+#define TIMEGPSACTIF    5000
+
 //-------------------------------------------------------
 #ifdef SIMU
   unsigned long           uCurrentTime;
@@ -433,7 +440,7 @@ void cb_click(Button2& pBtn)
   if (pBtn == btnL)
   {
     if ( sm.getActive() != iNetInfo )     sm.setActiveTime(iNetInfo, 10000);        // 10 secondes
-    else                                  sm.setActiveTime(iNetInfo, 1);            // retour 
+    else                                  sm.setActiveTime(iGps, 1);              // retour iNetInfo iRecherc
   }
   //---------------------------------- Rotation des écrans
   if (pBtn == btnR)
@@ -541,7 +548,9 @@ void setup() {
   iSats     = sm.addScreen( &sSats );
   iGpsInfo  = sm.addScreen( &sGpsInfo );
   iNetInfo  = sm.addScreen( &sNetInfo );
-  sm.setActive(iGps);
+  iRecherc  = sm.addScreen( &sRecherc );
+
+  sm.setActive(iRecherc);
   sm.setActiveTime(iSplash, 4000);
   //-----------------------------Init des boutons
   pinMode( BUTTONL, INPUT );
@@ -551,6 +560,8 @@ void setup() {
   btnR.setClickHandler(cb_click);
   btnL.setLongClickHandler(cb_long_click);
   btnR.setLongClickHandler(cb_long_click);
+  //-----------------------------
+  uElapsedGPSActif = millis();
 }
 //-----------------------------------------------------------------------------------------------------------------------------------------
 //
@@ -564,6 +575,8 @@ void loop() {
 
   //---------------------------------- Dialogue Wifi
   processWifiClient();
+  //---------------------------------- 
+  unsigned long  uCurrentTime = millis();
   //---------------------------------- Si dispo met à jour les données GPS
   while (gpsSerial.available() > 0) {
     if (gps.encode(gpsSerial.read())) {
@@ -573,6 +586,13 @@ void loop() {
         sGps.setLon( gps.location.lng() );
         sGps.setLat( gps.location.lat() );
       }
+
+      if ( gps.speed.isUpdated() )  
+      {
+        if ( sm.getActive() == iRecherc )     sm.setActive(iGps);
+        uElapsedGPSActif = millis();
+      }
+
       if ( gps.date.isUpdated() )               sGpsInfo.setDate( gps.date.value() );
       if ( gps.time.isUpdated() )               sGpsInfo.setTime( gps.time.value() );
       if ( gps.hdop.isUpdated() )               sGpsInfo.setHdop( gps.hdop.hdop() );
@@ -594,6 +614,12 @@ void loop() {
       //------------------------------ Lit les trames GSV
       read_gps(); 
     }
+  }
+
+
+  if ( uCurrentTime > (uElapsedGPSActif + TIMEGPSACTIF) )
+  {
+      if ( sm.getActive() != iRecherc )     sm.setActive(iRecherc);
   }
 
   //---------------------------------- Mise à jour de l'affichage

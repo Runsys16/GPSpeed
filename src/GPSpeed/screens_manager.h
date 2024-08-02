@@ -12,11 +12,11 @@
 //   Ces fonctions sont nécessaires pour le mécanisme d'appel des fonctions d'affichage.
 //   La fonction print() est appellé lorsque l'écran doit être effacé et tout le contenu doit être affiché.
 //   La fonction update() est appelé si un changement doit se faire ... (nouvelle donnée par exemple)
-//   En général lorsque l'écran précédant est le même, l'affiche est partiel
+//   En général lorsque l'écran précédant est le même, l'affichage est partiel
 //
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 // Ordre d'appels des fonctions:
-//------------------------------0
+//------------------------------
 //        arduino loop() 
 //   =>   screens_manager.loop() 
 //   =>   appel de print() ou update() de la fenetre active
@@ -49,7 +49,7 @@ class Screen
 //
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 #ifndef MAX_SCREENS
-  #define MAX_SCREENS           5
+  #define MAX_SCREENS           10
 #endif
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 class ScreensManager
