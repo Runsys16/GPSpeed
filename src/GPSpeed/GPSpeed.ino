@@ -597,7 +597,7 @@ void loop() {
       if ( gps.time.isUpdated() )               sGpsInfo.setTime( gps.time.value() );
       if ( gps.hdop.isUpdated() )               sGpsInfo.setHdop( gps.hdop.hdop() );
       if ( gps.speed.isUpdated() )              sGps.setSpe( gps.speed.kmph() );
-      if ( gps.satellites.isUpdated() )         { int n=gps.satellites.value();sGps.setNbs(n); sSats.setNbSat(n); }
+      if ( gps.satellites.isUpdated() )         { int n=gps.satellites.value();sGps.setNbs(n); sSats.setNbSat(n); sRecherc.setNbSat(n); }
       if ( tgpscNorth.isUpdated() )             sGps.setNorth( String(tgpscNorth.value()) );
       if ( tgpscEast.isUpdated() )              sGps.setEast( String(tgpscEast.value()) );
       if ( tgpscAlt.isUpdated() )               sGps.setAlt( atof(tgpscAlt.value()) );
@@ -619,7 +619,7 @@ void loop() {
 
   if ( uCurrentTime > (uElapsedGPSActif + TIMEGPSACTIF) )
   {
-      if ( sm.getActive() != iRecherc )     sm.setActive(iRecherc);
+      if ( sm.getActive() != iRecherc && sm.getActive() != iNetInfo )     sm.setActive(iRecherc);
   }
 
   //---------------------------------- Mise à jour de l'affichage

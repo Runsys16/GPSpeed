@@ -31,7 +31,7 @@ void ScreenSplash::print(void)
   x+=120; y+=35;
   tft->setFreeFont(FSS9);
   tft->setCursor(x, y); /*tft static text*/
-  tft->drawString("v2.1", x, y);  /*String to represent on OLED tft*/
+  tft->drawString("v"VERSION_MAJOR"."VERSION_MINOR, x, y);  /*String to represent on OLED tft*/
 
   bUpdate = false;
 }
