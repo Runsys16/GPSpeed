@@ -1,2 +1,2 @@
 #define VERSION_MAJOR   "2"
-#define VERSION_MINOR   "11"
+#define VERSION_MINOR   "12"

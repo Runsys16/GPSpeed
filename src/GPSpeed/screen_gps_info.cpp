@@ -82,6 +82,9 @@ void ScreenGPSInfo::setDate(uint32_t u)
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 void ScreenGPSInfo::setTime(uint32_t u)
 {
+  #ifdef DEBUG_GPS_INFO
+    Serial.println( "ScreenGPSInfo::setTime("+String(u)+")" );
+  #endif
   if ( u == time )       return;
 
   time = u;

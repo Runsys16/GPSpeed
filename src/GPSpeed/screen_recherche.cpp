@@ -9,6 +9,7 @@
 #include "Free_Fonts.h"
 #include "sat.h"                  // image RGB-565
 #include "log.h"
+#include "oui-non.h"
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 #define DX_NBS            60
 #define DY_NBS            20
@@ -23,6 +24,8 @@ ScreenRecherche::ScreenRecherche(TFT_eSPI* _tft) : Screen::Screen(_tft)
   pImgNbs->createSprite(DX_NBS, DY_NBS);
   nbs = 0;
   updateNbSat();
+  bAffFindSat = true;
+  bFindSat = false;
 }
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 //
@@ -30,7 +33,7 @@ ScreenRecherche::ScreenRecherche(TFT_eSPI* _tft) : Screen::Screen(_tft)
 void ScreenRecherche::setNbSat(int i)
 {
   #ifdef DEBUG_RECH
-    Serial.println( "ScreenRecherche::setNbSat("+String(i)+")" );
+    if ( nbs != i )     Serial.println( "ScreenRecherche::setNbSat("+String(i)+")" );
   #endif
 
   nbs = i;
@@ -49,6 +52,17 @@ void ScreenRecherche::setNbSat(int i)
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 //
 //---------------------------------------------------------------------------------------------------------------------------------------------------
+void ScreenRecherche::setFindSat(bool b)
+{
+  #ifdef DEBUG_RECH
+    if ( b != bFindSat )    Serial.println( "ScreenRecherche::setFindSat("+String(b)+")" );
+  #endif
+  bFindSat = b;
+  bAffFindSat = true;
+}
+//---------------------------------------------------------------------------------------------------------------------------------------------------
+//
+//---------------------------------------------------------------------------------------------------------------------------------------------------
 void ScreenRecherche::print(void)
 {
   update();
@@ -63,6 +77,18 @@ void ScreenRecherche::print(void)
 void ScreenRecherche::updateNbSat()
 {
     pImgNbs->pushSprite(10, tft->height()-20);
+}
+//---------------------------------------------------------------------------------------------------------------------------------------------------
+//
+//---------------------------------------------------------------------------------------------------------------------------------------------------
+void ScreenRecherche::updateFindSat()
+{
+  if ( bAffFindSat ) {
+    tft->setSwapBytes(true);
+    if ( bFindSat )       tft->pushImage(10, 10, 32, 32, oui);
+    else                  tft->pushImage(10, 10, 32, 32, non);
+  }
+  bAffFindSat = false;
 }
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 //
@@ -91,6 +117,7 @@ void ScreenRecherche::update(void)
 
       bAff = false;
       bEff = true;
+      bAffFindSat = true;
     }
   }
   
@@ -98,7 +125,7 @@ void ScreenRecherche::update(void)
   //------------------------------------
   // Affcichage du nombre de satellites
   updateNbSat();
-
+  updateFindSat();
 }
 
 #endif

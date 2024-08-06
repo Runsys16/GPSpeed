@@ -67,7 +67,7 @@
 //        #include "driver/gpio.h"
 //
 //-----------------------------------------------------------------------------------------------------------------------------------------
-#define DEBUG_INO
+//#define DEBUG_INO
 //#define SIMU
 //#define DEBUG_REQ                   // Info de debogage des requetes client<->serveur
 //-------------------------------------
@@ -594,7 +594,12 @@ void loop() {
       }
 
       if ( gps.date.isUpdated() )               sGpsInfo.setDate( gps.date.value() );
-      if ( gps.time.isUpdated() )               sGpsInfo.setTime( gps.time.value() );
+      if ( gps.time.isUpdated() )               { 
+        uint32_t t = gps.time.value();
+        sGpsInfo.setTime( t );
+        if ( t != 0 )     sRecherc.setFindSat(true);
+        else              sRecherc.setFindSat(false);
+      }
       if ( gps.hdop.isUpdated() )               sGpsInfo.setHdop( gps.hdop.hdop() );
       if ( gps.speed.isUpdated() )              sGps.setSpe( gps.speed.kmph() );
       if ( gps.satellites.isUpdated() )         { int n=gps.satellites.value();sGps.setNbs(n); sSats.setNbSat(n); sRecherc.setNbSat(n); }
