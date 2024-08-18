@@ -9,7 +9,7 @@ Il permet de mesurer la vitesse d'un avion RC en vol. La visualisation de la vit
 ### Config Réseau
 |SSID|GPSpeed|
 |---:|---:|
-|**Page**|**http://127.16.9.1**|
+|**Page**|**http://172.16.9.1**|
 
 ### Pages affichées
 
