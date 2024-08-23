@@ -81,7 +81,7 @@ Il faudra modifier les fichiers de configuration de la bibliothèque TFT_eSPI. D
 //       #define ST7789_DRIVER      // Full configuration option, define additional parameters below for this display
 //
 //--  18/07/2024  --
-//  - Dans le fichier TFT_eSPI_ESP32.h 
+//  - Dans le fichier Processors/TFT_eSPI_ESP32.h 
 //      Une erreur de compilation est apparue dans les denieres versions de l'IDE
 //      Source ( https://github.com/Bodmer/TFT_eSPI/issues/3346 )
 //      Ajouter en ligne 15
